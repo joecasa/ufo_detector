@@ -4,13 +4,14 @@ import sys
 def main():
     # Check if enough command-line arguments are provided
     if len(sys.argv) < 5:
-        print("Usage: python3 test_hailo_detector.py /dev/videoX width height pixel_format")
+        print("Usage: python3 test_hailo_detector.py /dev/videoX width height pixel_format model_path")
         sys.exit(1)
     
     video_device = sys.argv[1]
     width = int(sys.argv[2])
     height = int(sys.argv[3])
     pixel_format = sys.argv[4]
+    model_path = sys.argv[5]
     
     # Declare the camera and V4L settings
     camera_settings = CameraSettings(
@@ -36,8 +37,12 @@ def main():
         pixel_format=pixel_format
     )
     
-    # Instantiate the object detection system
-    detector = HailoObjectDetector(video_device=video_device, camera_settings=camera_settings, v4l_settings=v4l_settings)
+    detector = HailoObjectDetector(
+        video_device=video_device, 
+        camera_settings=camera_settings, 
+        v4l_settings=v4l_settings, 
+        model_path=model_path
+    )
     
     # Apply camera settings and start object detection
     detector._apply_camera_settings()
