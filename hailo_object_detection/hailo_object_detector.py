@@ -31,6 +31,7 @@ class HailoObjectDetector:
         self.video_device = video_device
         self.camera_settings = camera_settings
         self.v4l_settings = v4l_settings
+        self.model_path = model_path
         self.capture = None
         print(f"Initializing HailoObjectDetector for video device: {self.video_device} with resolution {self.v4l_settings.width}x{self.v4l_settings.height} and pixel format {self.v4l_settings.pixel_format}")
         self._adjust_camera_settings_for_opencv()

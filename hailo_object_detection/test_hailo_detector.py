@@ -11,6 +11,7 @@ def main():
     width = int(sys.argv[2])
     height = int(sys.argv[3])
     pixel_format = sys.argv[4]
+    model_path = sys.argv[5]  # Path to the YOLO model
     
     # Declare the camera and V4L settings
     camera_settings = CameraSettings(
