@@ -27,10 +27,21 @@ if __name__ == "__main__":
     with open('gstreamer_options.json', 'r') as f:
         gstreamer_config = json.load(f)
 
-    # Modify some GStreamer config (optional)
-    # gstreamer_config['brightness']['current_value'] = 0.5
+    # Enable local display by setting the 'display' option to True
+    gstreamer_config['display']['enabled'] = False
 
-    # Configure and run GStreamer pipeline
+    # Disable streaming or appsink for local display
+    gstreamer_config['stream']['enabled'] = True
+    gstreamer_config['stream']['ip'] = "192.168.1.56"  # IP address of the receiving machine
+    gstreamer_config['stream']['port'] = 5000  # Port for streaming
+    
+    # Example for local display
+    # gstreamer_config['display']['enabled'] = True
+
+    # Example for appsink
+    # gstreamer_config['appsink']['enabled'] = False
+
+    # Configure and run GStreamer pipeline based on the updated configuration
     camera.configure_gstreamer(gstreamer_config)
 
     camera.close()
